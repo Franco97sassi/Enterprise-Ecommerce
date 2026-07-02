@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\BillingService",
+    "\\PaymentsService\\Data",
+    "\\PaymentsService\\Models",
+    "\\StockService\\Data",
+    "\\StockService\\Models"
+  ],
+  "SelectedNode": "\\NotificationsService",
+  "PreviewInSolutionExplorer": false
+}
