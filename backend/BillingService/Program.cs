@@ -1,6 +1,7 @@
 using BillingService.Data;
 using BillingService.Models;
 using Microsoft.EntityFrameworkCore;
+using BillingService.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,10 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<BillingDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
+builder.Services.AddHostedService<PaymentCompletedConsumer>();
+builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
+builder.Services.AddHostedService<PaymentCompletedConsumer>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PaymentsService.Data;
 using PaymentsService.Models;
-
+using PaymentsService.Messaging;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
@@ -9,7 +9,9 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<PaymentsDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
+builder.Services.AddSingleton<RabbitMqPublisher>();
+builder.Services.AddHostedService<StockReservedConsumer>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

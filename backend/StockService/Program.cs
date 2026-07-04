@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using StockService.Data;
 using StockService.Models;
-
+using StockService.Messaging;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
@@ -9,7 +9,9 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<StockDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
+builder.Services.AddSingleton<RabbitMqPublisher>();
+builder.Services.AddHostedService<OrderCreatedConsumer>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

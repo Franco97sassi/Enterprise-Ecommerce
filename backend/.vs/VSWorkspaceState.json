@@ -2,13 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\BillingService",
-    "\\BillingService\\Models",
-    "\\PaymentsService\\Data",
-    "\\PaymentsService\\Models",
+    "\\BillingService\\Messaging",
+    "\\PaymentsService",
     "\\StockService",
-    "\\StockService\\Data",
+    "\\StockService\\Messaging",
     "\\StockService\\Models"
   ],
-  "SelectedNode": "\\BillingService\\appsettings.json",
+  "SelectedNode": "\\BillingService\\BillingService.csproj",
   "PreviewInSolutionExplorer": false
 }

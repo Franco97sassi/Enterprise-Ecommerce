@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OrdersService.Data;
 using OrdersService.Models;
-
+using OrdersService.Messaging;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
@@ -9,7 +9,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<OrdersDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
+builder.Services.AddSingleton<RabbitMqEventPublisher>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -45,8 +46,7 @@ orders.MapGet("/{id:int}", async (int id, OrdersDbContext dbContext) =>
         : Results.Ok(order);
 });
 
-orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext) =>
-{
+orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext, RabbitMqEventPublisher eventPublisher, CancellationToken cancellationToken) => {
     if (string.IsNullOrWhiteSpace(request.Customer) ||
         string.IsNullOrWhiteSpace(request.Product) ||
         request.Quantity <= 0 ||
@@ -68,7 +68,11 @@ orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext
     };
 
     dbContext.Orders.Add(order);
-    await dbContext.SaveChangesAsync();
+    await dbContext.SaveChangesAsync(cancellationToken);
+
+    await eventPublisher.PublishAsync(
+        "order.created",
+        new OrderCreatedEvent(order.Id, order.Customer, order.Product, order.Quantity, order.Total, DateTime.UtcN
 
     return Results.Created($"/orders/{order.Id}", order);
 });

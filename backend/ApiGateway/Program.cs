@@ -63,7 +63,8 @@ app.MapGet("/", () => Results.Ok(new
         "/orders/{**catch-all}",
         "/payments/{**catch-all}",
         "/stock/{**catch-all}",
-        "/billing/{**catch-all}"
+        "/billing/{**catch-all}",
+        "/notifications/{**catch-all}"
     }
 }));
 
