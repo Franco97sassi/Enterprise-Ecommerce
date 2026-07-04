@@ -1,0 +1,22 @@
+@NotificationsService_HostAddress = http://localhost:5207
+
+GET {{NotificationsService_HostAddress}}/health
+Accept: application/json
+
+###
+
+GET {{NotificationsService_HostAddress}}/notifications
+Accept: application/json
+
+###
+
+POST {{NotificationsService_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+  "orderId": 1,
+  "recipient": "customer@example.com",
+  "subject": "Order update",
+  "message": "Your order was created.",
+  "channel": "Email"
+}
