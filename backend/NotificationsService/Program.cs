@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using NotificationsService.Data;
 using NotificationsService.Models;
-
+using NotificationsService.Messaging;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
@@ -9,6 +9,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<NotificationsDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
+builder.Services.AddHostedService<NotificationEventsConsumer>();
 
 var app = builder.Build();
 
