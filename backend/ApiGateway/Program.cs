@@ -46,14 +46,33 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services
+    .AddReverseProxy()
+    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.MapGet("/", () => "ApiGateway funcionando");
+app.MapGet("/", () => Results.Ok(new
+{
+    Service = "ApiGateway",
+    Status = "Running",
+    Routes = new[]
+    {
+        "/orders/{**catch-all}",
+        "/payments/{**catch-all}",
+        "/stock/{**catch-all}",
+        "/billing/{**catch-all}"
+    }
+}));
+
+app.MapGet("/gateway/health", () => Results.Ok(new
+{
+    Status = "Healthy",
+    Timestamp = DateTimeOffset.UtcNow
+}));
 
 app.MapControllers();
-
+app.MapReverseProxy();
 app.Run();

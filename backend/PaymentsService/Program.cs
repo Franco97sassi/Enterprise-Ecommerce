@@ -1,17 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using PaymentsService.Data;
+using PaymentsService.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-var app = builder.Build();
 builder.Services.AddDbContext<PaymentsDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
-// Configure the HTTP request pipeline.
+
+var app = builder.Build();
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -19,28 +19,104 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/health", () => Results.Ok(new
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    Service = "PaymentsService",
+    Status = "Healthy",
+    Timestamp = DateTimeOffset.UtcNow
+}));
 
-app.MapGet("/weatherforecast", () =>
+var payments = app.MapGroup("/payments");
+
+payments.MapGet("/", async (PaymentsDbContext dbContext) =>
+    await dbContext.Payments
+        .AsNoTracking()
+        .OrderByDescending(payment => payment.CreatedAt)
+        .ToListAsync());
+
+payments.MapGet("/{id:int}", async (int id, PaymentsDbContext dbContext) =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    var payment = await dbContext.Payments
+        .AsNoTracking()
+        .FirstOrDefaultAsync(existingPayment => existingPayment.Id == id);
+
+    return payment is null
+        ? Results.NotFound()
+        : Results.Ok(payment);
+});
+
+payments.MapGet("/order/{orderId:int}", async (int orderId, PaymentsDbContext dbContext) =>
+    await dbContext.Payments
+        .AsNoTracking()
+        .Where(payment => payment.OrderId == orderId)
+        .OrderByDescending(payment => payment.CreatedAt)
+        .ToListAsync());
+
+payments.MapPost("/", async (CreatePaymentRequest request, PaymentsDbContext dbContext) =>
+{
+    if (request.OrderId <= 0 || request.Amount <= 0)
+    {
+        return Results.BadRequest(
+            "OrderId and amount are required. Amount must be greater than zero.");
+    }
+
+    var payment = new Payment
+    {
+        OrderId = request.OrderId,
+        Amount = request.Amount,
+        Status = string.IsNullOrWhiteSpace(request.Status)
+            ? "Pending"
+            : request.Status.Trim(),
+        CreatedAt = DateTime.UtcNow
+    };
+
+    dbContext.Payments.Add(payment);
+    await dbContext.SaveChangesAsync();
+
+    return Results.Created($"/payments/{payment.Id}", payment);
+});
+
+payments.MapPut("/{id:int}/status", async (int id, UpdatePaymentStatusRequest request, PaymentsDbContext dbContext) =>
+{
+    if (string.IsNullOrWhiteSpace(request.Status))
+    {
+        return Results.BadRequest("Status is required.");
+    }
+
+    var payment = await dbContext.Payments.FindAsync(id);
+
+    if (payment is null)
+    {
+        return Results.NotFound();
+    }
+
+    payment.Status = request.Status.Trim();
+
+    await dbContext.SaveChangesAsync();
+
+    return Results.Ok(payment);
+});
+
+payments.MapDelete("/{id:int}", async (int id, PaymentsDbContext dbContext) =>
+{
+    var payment = await dbContext.Payments.FindAsync(id);
+
+    if (payment is null)
+    {
+        return Results.NotFound();
+    }
+
+    dbContext.Payments.Remove(payment);
+    await dbContext.SaveChangesAsync();
+
+    return Results.NoContent();
+});
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+public sealed record CreatePaymentRequest(
+    int OrderId,
+    decimal Amount,
+    string? Status);
+
+public sealed record UpdatePaymentStatusRequest(string Status);

@@ -2,11 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\BillingService",
+    "\\BillingService\\Models",
     "\\PaymentsService\\Data",
     "\\PaymentsService\\Models",
+    "\\StockService",
     "\\StockService\\Data",
     "\\StockService\\Models"
   ],
-  "SelectedNode": "\\NotificationsService",
+  "SelectedNode": "\\BillingService\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }
