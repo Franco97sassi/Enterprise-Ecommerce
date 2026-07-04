@@ -1,13 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\BillingService",
-    "\\BillingService\\Messaging",
+    "\\NotificationsService",
+    "\\NotificationsService\\Messaging",
+    "\\OrdersService",
+    "\\OrdersService\\Messaging",
     "\\PaymentsService",
+    "\\PaymentsService\\Messaging",
+    "\\PaymentsService\\Models",
     "\\StockService",
-    "\\StockService\\Messaging",
     "\\StockService\\Models"
   ],
-  "SelectedNode": "\\BillingService\\BillingService.csproj",
+  "SelectedNode": "\\PaymentsService\\Messaging\\StockReservedConsumer.cs",
   "PreviewInSolutionExplorer": false
 }

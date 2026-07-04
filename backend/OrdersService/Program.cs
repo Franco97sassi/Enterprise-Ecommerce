@@ -72,7 +72,8 @@ orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext
 
     await eventPublisher.PublishAsync(
         "order.created",
-        new OrderCreatedEvent(order.Id, order.Customer, order.Product, order.Quantity, order.Total, DateTime.UtcN
+        new OrderCreatedEvent(order.Id, order.Customer, order.Product, order.Quantity, order.Total, DateTime.UtcNow),
+        cancellationToken);
 
     return Results.Created($"/orders/{order.Id}", order);
 });
