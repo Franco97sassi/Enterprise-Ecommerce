@@ -156,3 +156,6 @@ C:\Users\Franc\Desktop\ArquitecturaDeSoftware\EnterpriseCommerce\backend\Payment
 C:\Users\Franc\Desktop\ArquitecturaDeSoftware\EnterpriseCommerce\backend\PaymentsService\obj\Debug\net10.0\PaymentsService.pdb
 C:\Users\Franc\Desktop\ArquitecturaDeSoftware\EnterpriseCommerce\backend\PaymentsService\obj\Debug\net10.0\PaymentsService.genruntimeconfig.cache
 C:\Users\Franc\Desktop\ArquitecturaDeSoftware\EnterpriseCommerce\backend\PaymentsService\obj\Debug\net10.0\ref\PaymentsService.dll
+C:\Users\Franc\Desktop\ArquitecturaDeSoftware\EnterpriseCommerce\backend\PaymentsService\bin\Debug\net10.0\RabbitMQ.Client.dll
+C:\Users\Franc\Desktop\ArquitecturaDeSoftware\EnterpriseCommerce\backend\PaymentsService\obj\Debug\net10.0\PaymentsService.sourcelink.json
+C:\Users\Franc\Desktop\ArquitecturaDeSoftware\EnterpriseCommerce\backend\PaymentsService\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

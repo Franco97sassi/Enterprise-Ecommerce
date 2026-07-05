@@ -11,4 +11,8 @@ public class OrdersDbContext : DbContext
     }
 
     public DbSet<Order> Orders => Set<Order>();
+    public DbSet<OrderSagaState> OrderSagaStates => Set<OrderSagaState>();
+    public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
+
+
 }

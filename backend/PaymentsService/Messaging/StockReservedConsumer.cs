@@ -53,8 +53,7 @@ public sealed class StockReservedConsumer : BackgroundService
 
             using var scope = _scopeFactory.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<PaymentsDbContext>();
-            var publisher = scope.ServiceProvider.GetRequiredService<RabbitMqPublisher>();
-
+ 
             var payment = await dbContext.Payments.FirstOrDefaultAsync(existingPayment => existingPayment.OrderId == integrationEvent.OrderId);
             if (payment is null)
             {
@@ -72,11 +71,17 @@ public sealed class StockReservedConsumer : BackgroundService
                 payment.Amount = integrationEvent.Total;
                 payment.Status = "Completed";
             }
-
+            var paymentCompleted = new PaymentCompletedEvent(integrationEvent.OrderId, integrationEvent.Total, DateTime.UtcNow);
+            dbContext.OutboxMessages.Add(new OutboxMessage
+            {
+                RoutingKey = "payment.completed",
+                Type = nameof(PaymentCompletedEvent),
+                Payload = JsonSerializer.Serialize(paymentCompleted),
+                OccurredAt = paymentCompleted.OccurredAt
+            });
             await dbContext.SaveChangesAsync();
-            await publisher.PublishAsync(
-                "payment.completed",
-                new PaymentCompletedEvent(integrationEvent.OrderId, integrationEvent.Total, DateTime.UtcNow));
+            
+
 
             await _channel!.BasicAckAsync(args.DeliveryTag, multiple: false);
         }

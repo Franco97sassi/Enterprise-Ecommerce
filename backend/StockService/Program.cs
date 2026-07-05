@@ -11,6 +11,7 @@ builder.Services.AddDbContext<StockDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
 builder.Services.AddSingleton<RabbitMqPublisher>();
+builder.Services.AddHostedService<OutboxMessagePublisher>();
 builder.Services.AddHostedService<OrderCreatedConsumer>();
 var app = builder.Build();
 

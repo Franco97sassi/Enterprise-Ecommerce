@@ -11,4 +11,6 @@ public class PaymentsDbContext : DbContext
     }
 
     public DbSet<Payment> Payments => Set<Payment>();
+    public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
+
 }

@@ -3,6 +3,38 @@
   "WorkspaceRootPath": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\Messaging\\IntegrationEvents.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OrdersService\\Messaging\\IntegrationEvents.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Messaging\\IntegrationEvents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PaymentsService\\Messaging\\IntegrationEvents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Messaging\\RabbitMqOptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PaymentsService\\Messaging\\RabbitMqOptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Messaging\\RabbitMqPublisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PaymentsService\\Messaging\\RabbitMqPublisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Messaging\\StockReservedConsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PaymentsService\\Messaging\\StockReservedConsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OrdersService\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PaymentsService\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Messaging\\RabbitMqOptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NotificationsService\\Messaging\\RabbitMqOptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\BillingService.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BillingService\\BillingService.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
@@ -67,20 +99,12 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PaymentsService\\PaymentsService.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PaymentsService\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OrdersService\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OrdersService\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OrdersService\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\OrdersService.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
@@ -117,10 +141,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Messaging\\NotificationEventsConsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NotificationsService\\Messaging\\NotificationEventsConsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Messaging\\RabbitMqOptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NotificationsService\\Messaging\\RabbitMqOptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -162,7 +182,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -178,46 +198,72 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RabbitMqOptions.cs",
-              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\Messaging\\RabbitMqOptions.cs",
-              "RelativeDocumentMoniker": "StockService\\Messaging\\RabbitMqOptions.cs",
-              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\Messaging\\RabbitMqOptions.cs",
-              "RelativeToolTip": "StockService\\Messaging\\RabbitMqOptions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-04T22:44:12.453Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "IntegrationEvents.cs",
-              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\Messaging\\IntegrationEvents.cs",
-              "RelativeDocumentMoniker": "BillingService\\Messaging\\IntegrationEvents.cs",
-              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\Messaging\\IntegrationEvents.cs",
-              "RelativeToolTip": "BillingService\\Messaging\\IntegrationEvents.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Title": "StockReservedConsumer.cs",
+              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Messaging\\StockReservedConsumer.cs",
+              "RelativeDocumentMoniker": "PaymentsService\\Messaging\\StockReservedConsumer.cs",
+              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Messaging\\StockReservedConsumer.cs",
+              "RelativeToolTip": "PaymentsService\\Messaging\\StockReservedConsumer.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAADwv2AAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-04T22:14:31.326Z",
+              "WhenOpened": "2026-07-04T23:23:50.048Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "PaymentCompletedConsumer.cs",
-              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\Messaging\\PaymentCompletedConsumer.cs",
-              "RelativeDocumentMoniker": "BillingService\\Messaging\\PaymentCompletedConsumer.cs",
-              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\Messaging\\PaymentCompletedConsumer.cs",
-              "RelativeToolTip": "BillingService\\Messaging\\PaymentCompletedConsumer.cs",
+              "Title": "RabbitMqPublisher.cs",
+              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Messaging\\RabbitMqPublisher.cs",
+              "RelativeDocumentMoniker": "PaymentsService\\Messaging\\RabbitMqPublisher.cs",
+              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Messaging\\RabbitMqPublisher.cs",
+              "RelativeToolTip": "PaymentsService\\Messaging\\RabbitMqPublisher.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAFMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-04T22:13:41.426Z",
+              "WhenOpened": "2026-07-04T23:23:33.503Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "RabbitMqOptions.cs",
+              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Messaging\\RabbitMqOptions.cs",
+              "RelativeDocumentMoniker": "PaymentsService\\Messaging\\RabbitMqOptions.cs",
+              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Messaging\\RabbitMqOptions.cs",
+              "RelativeToolTip": "PaymentsService\\Messaging\\RabbitMqOptions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T23:23:26.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IntegrationEvents.cs",
+              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Messaging\\IntegrationEvents.cs",
+              "RelativeDocumentMoniker": "PaymentsService\\Messaging\\IntegrationEvents.cs",
+              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Messaging\\IntegrationEvents.cs",
+              "RelativeToolTip": "PaymentsService\\Messaging\\IntegrationEvents.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T23:23:18.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IntegrationEvents.cs",
+              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\Messaging\\IntegrationEvents.cs",
+              "RelativeDocumentMoniker": "OrdersService\\Messaging\\IntegrationEvents.cs",
+              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\Messaging\\IntegrationEvents.cs",
+              "RelativeToolTip": "OrdersService\\Messaging\\IntegrationEvents.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T23:22:21.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "RabbitMqOptions.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\Messaging\\RabbitMqOptions.cs",
               "RelativeDocumentMoniker": "BillingService\\Messaging\\RabbitMqOptions.cs",
@@ -225,12 +271,11 @@
               "RelativeToolTip": "BillingService\\Messaging\\RabbitMqOptions.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-04T22:14:10.823Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-04T22:14:10.823Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\Program.cs",
               "RelativeDocumentMoniker": "BillingService\\Program.cs",
@@ -238,12 +283,11 @@
               "RelativeToolTip": "BillingService\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-04T21:28:48.824Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-04T21:28:48.824Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
               "Title": "BillingService.csproj",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\BillingService.csproj",
               "RelativeDocumentMoniker": "BillingService\\BillingService.csproj",
@@ -256,7 +300,82 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RabbitMqOptions.cs",
+              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Messaging\\RabbitMqOptions.cs",
+              "RelativeDocumentMoniker": "NotificationsService\\Messaging\\RabbitMqOptions.cs",
+              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Messaging\\RabbitMqOptions.cs",
+              "RelativeToolTip": "NotificationsService\\Messaging\\RabbitMqOptions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T22:18:44.945Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Program.cs",
+              "RelativeDocumentMoniker": "PaymentsService\\Program.cs",
+              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Program.cs",
+              "RelativeToolTip": "PaymentsService\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T22:35:07.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\Program.cs",
+              "RelativeDocumentMoniker": "OrdersService\\Program.cs",
+              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\Program.cs",
+              "RelativeToolTip": "OrdersService\\Program.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAAEsAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T22:26:10.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PaymentCompletedConsumer.cs",
+              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\Messaging\\PaymentCompletedConsumer.cs",
+              "RelativeDocumentMoniker": "BillingService\\Messaging\\PaymentCompletedConsumer.cs",
+              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\Messaging\\PaymentCompletedConsumer.cs",
+              "RelativeToolTip": "BillingService\\Messaging\\PaymentCompletedConsumer.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAFMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T22:13:41.426Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IntegrationEvents.cs",
+              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\Messaging\\IntegrationEvents.cs",
+              "RelativeDocumentMoniker": "BillingService\\Messaging\\IntegrationEvents.cs",
+              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\Messaging\\IntegrationEvents.cs",
+              "RelativeToolTip": "BillingService\\Messaging\\IntegrationEvents.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T22:14:31.326Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RabbitMqOptions.cs",
+              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\Messaging\\RabbitMqOptions.cs",
+              "RelativeDocumentMoniker": "StockService\\Messaging\\RabbitMqOptions.cs",
+              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\Messaging\\RabbitMqOptions.cs",
+              "RelativeToolTip": "StockService\\Messaging\\RabbitMqOptions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T22:44:12.453Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "RabbitMqPublisher.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\Messaging\\RabbitMqPublisher.cs",
               "RelativeDocumentMoniker": "StockService\\Messaging\\RabbitMqPublisher.cs",
@@ -268,7 +387,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 15,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\Program.cs",
               "RelativeDocumentMoniker": "StockService\\Program.cs",
@@ -280,7 +399,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 16,
               "Title": "StockService.csproj",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\StockService.csproj",
               "RelativeDocumentMoniker": "StockService\\StockService.csproj",
@@ -292,7 +411,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 17,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\appsettings.json",
               "RelativeDocumentMoniker": "StockService\\appsettings.json",
@@ -304,7 +423,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 18,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\appsettings.Development.json",
               "RelativeDocumentMoniker": "StockService\\appsettings.Development.json",
@@ -316,7 +435,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 19,
               "Title": "IntegrationEvents.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\Messaging\\IntegrationEvents.cs",
               "RelativeDocumentMoniker": "StockService\\Messaging\\IntegrationEvents.cs",
@@ -328,7 +447,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 20,
               "Title": "OrderCreatedConsumer.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\Messaging\\OrderCreatedConsumer.cs",
               "RelativeDocumentMoniker": "StockService\\Messaging\\OrderCreatedConsumer.cs",
@@ -340,7 +459,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 22,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\appsettings.Development.json",
               "RelativeDocumentMoniker": "PaymentsService\\appsettings.Development.json",
@@ -352,7 +471,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 21,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\appsettings.json",
               "RelativeDocumentMoniker": "PaymentsService\\appsettings.json",
@@ -364,19 +483,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Program.cs",
-              "RelativeDocumentMoniker": "PaymentsService\\Program.cs",
-              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\Program.cs",
-              "RelativeToolTip": "PaymentsService\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-04T22:35:07.377Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 23,
               "Title": "PaymentsService.csproj",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\PaymentsService.csproj",
               "RelativeDocumentMoniker": "PaymentsService\\PaymentsService.csproj",
@@ -388,7 +495,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 24,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\appsettings.Development.json",
               "RelativeDocumentMoniker": "OrdersService\\appsettings.Development.json",
@@ -400,7 +507,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 25,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\appsettings.json",
               "RelativeDocumentMoniker": "OrdersService\\appsettings.json",
@@ -412,19 +519,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\Program.cs",
-              "RelativeDocumentMoniker": "OrdersService\\Program.cs",
-              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\Program.cs",
-              "RelativeToolTip": "OrdersService\\Program.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAAAEoAAABxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-04T22:26:10.4Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 26,
               "Title": "OrdersService.csproj",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\OrdersService.csproj",
               "RelativeDocumentMoniker": "OrdersService\\OrdersService.csproj",
@@ -436,7 +531,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 27,
               "Title": "RabbitMqOptions.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\Messaging\\RabbitMqOptions.cs",
               "RelativeDocumentMoniker": "OrdersService\\Messaging\\RabbitMqOptions.cs",
@@ -448,7 +543,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 28,
               "Title": "RabbitMqEventPublisher.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\Messaging\\RabbitMqEventPublisher.cs",
               "RelativeDocumentMoniker": "OrdersService\\Messaging\\RabbitMqEventPublisher.cs",
@@ -460,7 +555,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 29,
               "Title": "IntegrationEvents.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Messaging\\IntegrationEvents.cs",
               "RelativeDocumentMoniker": "NotificationsService\\Messaging\\IntegrationEvents.cs",
@@ -472,7 +567,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 33,
               "Title": "NotificationsService.csproj",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\NotificationsService.csproj",
               "RelativeDocumentMoniker": "NotificationsService\\NotificationsService.csproj",
@@ -484,7 +579,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 32,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Program.cs",
               "RelativeDocumentMoniker": "NotificationsService\\Program.cs",
@@ -496,7 +591,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 31,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\appsettings.json",
               "RelativeDocumentMoniker": "NotificationsService\\appsettings.json",
@@ -508,7 +603,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 30,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\appsettings.Development.json",
               "RelativeDocumentMoniker": "NotificationsService\\appsettings.Development.json",
@@ -520,7 +615,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 34,
               "Title": "NotificationEventsConsumer.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Messaging\\NotificationEventsConsumer.cs",
               "RelativeDocumentMoniker": "NotificationsService\\Messaging\\NotificationEventsConsumer.cs",
@@ -532,19 +627,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "RabbitMqOptions.cs",
-              "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Messaging\\RabbitMqOptions.cs",
-              "RelativeDocumentMoniker": "NotificationsService\\Messaging\\RabbitMqOptions.cs",
-              "ToolTip": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Messaging\\RabbitMqOptions.cs",
-              "RelativeToolTip": "NotificationsService\\Messaging\\RabbitMqOptions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-04T22:18:44.945Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 36,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\appsettings.Development.json",
               "RelativeDocumentMoniker": "BillingService\\appsettings.Development.json",
@@ -556,7 +639,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 35,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\appsettings.json",
               "RelativeDocumentMoniker": "BillingService\\appsettings.json",
@@ -568,7 +651,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 38,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "NotificationsService\\Properties\\launchSettings.json",
@@ -580,7 +663,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 37,
               "Title": "NotificationsService.http",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\NotificationsService.http",
               "RelativeDocumentMoniker": "NotificationsService\\NotificationsService.http",
@@ -592,7 +675,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 39,
               "Title": "NotificationsDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Data\\NotificationsDbContext.cs",
               "RelativeDocumentMoniker": "NotificationsService\\Data\\NotificationsDbContext.cs",
@@ -604,7 +687,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 40,
               "Title": "Notification.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\NotificationsService\\Models\\Notification.cs",
               "RelativeDocumentMoniker": "NotificationsService\\Models\\Notification.cs",
@@ -616,7 +699,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 41,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\ApiGateway\\appsettings.json",
               "RelativeDocumentMoniker": "ApiGateway\\appsettings.json",
@@ -628,7 +711,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 42,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\ApiGateway\\Program.cs",
               "RelativeDocumentMoniker": "ApiGateway\\Program.cs",

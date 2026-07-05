@@ -11,4 +11,5 @@ public class StockDbContext : DbContext
     }
 
     public DbSet<ProductStock> ProductStocks => Set<ProductStock>();
+    public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
 }

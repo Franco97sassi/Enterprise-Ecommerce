@@ -11,4 +11,5 @@ public class NotificationsDbContext : DbContext
     }
 
     public DbSet<Notification> Notifications => Set<Notification>();
+
 }

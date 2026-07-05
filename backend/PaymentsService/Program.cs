@@ -11,6 +11,8 @@ builder.Services.AddDbContext<PaymentsDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
 builder.Services.AddSingleton<RabbitMqPublisher>();
+builder.Services.AddHostedService<OutboxMessagePublisher>();
+
 builder.Services.AddHostedService<StockReservedConsumer>();
 var app = builder.Build();
 

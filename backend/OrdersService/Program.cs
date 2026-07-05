@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using OrdersService.Data;
 using OrdersService.Models;
 using OrdersService.Messaging;
+using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
@@ -11,6 +12,8 @@ builder.Services.AddDbContext<OrdersDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
 builder.Services.AddSingleton<RabbitMqEventPublisher>();
+builder.Services.AddHostedService<OrderSagaOrchestrator>();
+builder.Services.AddHostedService<OutboxMessagePublisher>(); 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -46,7 +49,7 @@ orders.MapGet("/{id:int}", async (int id, OrdersDbContext dbContext) =>
         : Results.Ok(order);
 });
 
-orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext, RabbitMqEventPublisher eventPublisher, CancellationToken cancellationToken) => {
+orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext, CancellationToken cancellationToken) => {
     if (string.IsNullOrWhiteSpace(request.Customer) ||
         string.IsNullOrWhiteSpace(request.Product) ||
         request.Quantity <= 0 ||
@@ -69,11 +72,34 @@ orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext
 
     dbContext.Orders.Add(order);
     await dbContext.SaveChangesAsync(cancellationToken);
+    dbContext.OrderSagaStates.Add(new OrderSagaState
+    {
+        OrderId = order.Id,
+        CurrentStep = "OrderCreated",
+        Status = "Started",
+        StartedAt = DateTime.UtcNow,
+        UpdatedAt = DateTime.UtcNow
+    });
+    await dbContext.SaveChangesAsync(cancellationToken);
+    dbContext.OrderSagaStates.Add(new OrderSagaState
+    {
+        OrderId = order.Id,
+        CurrentStep = "OrderCreated",
+        Status = "Started",
+        StartedAt = DateTime.UtcNow,
+        UpdatedAt = DateTime.UtcNow
+    });
+    await dbContext.SaveChangesAsync(cancellationToken);
 
-    await eventPublisher.PublishAsync(
-        "order.created",
-        new OrderCreatedEvent(order.Id, order.Customer, order.Product, order.Quantity, order.Total, DateTime.UtcNow),
-        cancellationToken);
+    var orderCreated = new OrderCreatedEvent(order.Id, order.Customer, order.Product, order.Quantity, order.Total, DateTime.UtcNow);
+    dbContext.OutboxMessages.Add(new OutboxMessage
+    {
+        RoutingKey = "order.created",
+        Type = nameof(OrderCreatedEvent),
+        Payload = JsonSerializer.Serialize(orderCreated),
+        OccurredAt = orderCreated.OccurredAt
+    });
+    await dbContext.SaveChangesAsync(cancellationToken);
 
     return Results.Created($"/orders/{order.Id}", order);
 });
@@ -113,7 +139,42 @@ orders.MapDelete("/{id:int}", async (int id, OrdersDbContext dbContext) =>
 
     return Results.NoContent();
 });
+var sagas = app.MapGroup("/order-sagas");
 
+sagas.MapGet("/", async (OrdersDbContext dbContext) =>
+    await dbContext.OrderSagaStates
+        .AsNoTracking()
+        .OrderByDescending(saga => saga.UpdatedAt)
+        .ToListAsync());
+
+sagas.MapGet("/order/{orderId:int}", async (int orderId, OrdersDbContext dbContext) =>
+{
+    var saga = await dbContext.OrderSagaStates
+        .AsNoTracking()
+        .FirstOrDefaultAsync(existingSaga => existingSaga.OrderId == orderId);
+
+    return saga is null
+        ? Results.NotFound()
+        : Results.Ok(saga);
+});
+var sagas = app.MapGroup("/order-sagas");
+
+sagas.MapGet("/", async (OrdersDbContext dbContext) =>
+    await dbContext.OrderSagaStates
+        .AsNoTracking()
+        .OrderByDescending(saga => saga.UpdatedAt)
+        .ToListAsync());
+
+sagas.MapGet("/order/{orderId:int}", async (int orderId, OrdersDbContext dbContext) =>
+{
+    var saga = await dbContext.OrderSagaStates
+        .AsNoTracking()
+        .FirstOrDefaultAsync(existingSaga => existingSaga.OrderId == orderId);
+
+    return saga is null
+        ? Results.NotFound()
+        : Results.Ok(saga);
+});
 app.Run();
 
 public sealed record CreateOrderRequest(
