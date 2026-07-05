@@ -81,15 +81,7 @@ orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext
         UpdatedAt = DateTime.UtcNow
     });
     await dbContext.SaveChangesAsync(cancellationToken);
-    dbContext.OrderSagaStates.Add(new OrderSagaState
-    {
-        OrderId = order.Id,
-        CurrentStep = "OrderCreated",
-        Status = "Started",
-        StartedAt = DateTime.UtcNow,
-        UpdatedAt = DateTime.UtcNow
-    });
-    await dbContext.SaveChangesAsync(cancellationToken);
+    
 
     var orderCreated = new OrderCreatedEvent(order.Id, order.Customer, order.Product, order.Quantity, order.Total, DateTime.UtcNow);
     dbContext.OutboxMessages.Add(new OutboxMessage
@@ -157,24 +149,8 @@ sagas.MapGet("/order/{orderId:int}", async (int orderId, OrdersDbContext dbConte
         ? Results.NotFound()
         : Results.Ok(saga);
 });
-var sagas = app.MapGroup("/order-sagas");
-
-sagas.MapGet("/", async (OrdersDbContext dbContext) =>
-    await dbContext.OrderSagaStates
-        .AsNoTracking()
-        .OrderByDescending(saga => saga.UpdatedAt)
-        .ToListAsync());
-
-sagas.MapGet("/order/{orderId:int}", async (int orderId, OrdersDbContext dbContext) =>
-{
-    var saga = await dbContext.OrderSagaStates
-        .AsNoTracking()
-        .FirstOrDefaultAsync(existingSaga => existingSaga.OrderId == orderId);
-
-    return saga is null
-        ? Results.NotFound()
-        : Results.Ok(saga);
-});
+ 
+ 
 app.Run();
 
 public sealed record CreateOrderRequest(
