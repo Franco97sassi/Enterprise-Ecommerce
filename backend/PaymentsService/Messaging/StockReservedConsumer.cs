@@ -57,6 +57,7 @@ public sealed class StockReservedConsumer : BackgroundService
         try
         {
             var integrationEvent = JsonSerializer.Deserialize<StockReservedEvent>(Encoding.UTF8.GetString(args.Body.Span));
+            var correlationId = args.BasicProperties?.CorrelationId ?? Guid.NewGuid().ToString("N");
             if (integrationEvent is null)
             {
                 await _channel!.BasicNackAsync(args.DeliveryTag, multiple: false, requeue: false);

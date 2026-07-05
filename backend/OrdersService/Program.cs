@@ -48,7 +48,29 @@ orders.MapGet("/{id:int}", async (int id, OrdersDbContext dbContext) =>
         ? Results.NotFound()
         : Results.Ok(order);
 });
+orders.MapGet("/{id:int}/events", async (int id, OrdersDbContext dbContext) =>
+    await dbContext.OrderEvents
+        .AsNoTracking()
+        .Where(orderEvent => orderEvent.OrderId == id)
+        .OrderBy(orderEvent => orderEvent.Id)
+        .ToListAsync());
 
+orders.MapGet("/{id:int}/projection", async (int id, OrdersDbContext dbContext) =>
+{
+    var events = await dbContext.OrderEvents
+        .AsNoTracking()
+        .Where(orderEvent => orderEvent.OrderId == id)
+        .OrderBy(orderEvent => orderEvent.Id)
+        .ToListAsync();
+
+    if (events.Count == 0)
+    {
+        return Results.NotFound();
+    }
+
+    var projection = OrderProjection.Replay(id, events);
+    return Results.Ok(projection);
+});
 orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext, CancellationToken cancellationToken) => {
     if (string.IsNullOrWhiteSpace(request.Customer) ||
         string.IsNullOrWhiteSpace(request.Product) ||
@@ -81,7 +103,11 @@ orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext
         StartedAt = DateTime.UtcNow,
         UpdatedAt = DateTime.UtcNow
     });
-     
+    dbContext.OrderEvents.Add(OrderEvent.From(
+      order.Id,
+      nameof(OrderCreatedEvent),
+      new OrderCreatedSnapshot(order.Id, order.Customer, order.Product, order.Quantity, order.Total, order.Status),
+      correlationId));
 
     var orderCreated = new OrderCreatedEvent(order.Id, order.Customer, order.Product, order.Quantity, order.Total, DateTime.UtcNow);
     dbContext.OutboxMessages.Add(new OutboxMessage
@@ -112,7 +138,11 @@ orders.MapPut("/{id:int}/status", async (int id, UpdateOrderStatusRequest reques
     }
 
     order.Status = request.Status.Trim();
-
+    dbContext.OrderEvents.Add(OrderEvent.From(
+       order.Id,
+       nameof(OrderStatusChangedEvent),
+       new OrderStatusChangedEvent(order.Id, order.Status, DateTime.UtcNow),
+       Guid.NewGuid().ToString("N")));
     await dbContext.SaveChangesAsync();
 
     return Results.Ok(order);
@@ -126,7 +156,11 @@ orders.MapDelete("/{id:int}", async (int id, OrdersDbContext dbContext) =>
     {
         return Results.NotFound();
     }
-
+    dbContext.OrderEvents.Add(OrderEvent.From(
+      order.Id,
+      nameof(OrderDeletedEvent),
+      new OrderDeletedEvent(order.Id, DateTime.UtcNow),
+      Guid.NewGuid().ToString("N")));
     dbContext.Orders.Remove(order);
     await dbContext.SaveChangesAsync();
 
@@ -162,3 +196,53 @@ public sealed record CreateOrderRequest(
     string? Status);
 
 public sealed record UpdateOrderStatusRequest(string Status);
+
+public sealed record OrderCreatedSnapshot(int OrderId, string Customer, string Product, int Quantity, decimal Total, string Status);
+
+public sealed record OrderStatusChangedEvent(int OrderId, string Status, DateTime OccurredAt);
+
+public sealed record OrderDeletedEvent(int OrderId, DateTime OccurredAt);
+
+public sealed record OrderProjection(int OrderId, string Customer, string Product, int Quantity, decimal Total, string Status, IReadOnlyList<string> AppliedEvents)
+{
+    public static OrderProjection Replay(int orderId, IReadOnlyList<OrderEvent> events)
+    {
+        var projection = new OrderProjection(orderId, string.Empty, string.Empty, 0, 0, "Unknown", []);
+        var appliedEvents = new List<string>();
+
+        foreach (var orderEvent in events)
+        {
+            appliedEvents.Add(orderEvent.EventType);
+
+            if (orderEvent.EventType == nameof(OrderCreatedEvent))
+            {
+                var snapshot = JsonSerializer.Deserialize<OrderCreatedSnapshot>(orderEvent.Payload);
+                if (snapshot is not null)
+                {
+                    projection = projection with
+                    {
+                        Customer = snapshot.Customer,
+                        Product = snapshot.Product,
+                        Quantity = snapshot.Quantity,
+                        Total = snapshot.Total,
+                        Status = snapshot.Status
+                    };
+                }
+            }
+            else if (orderEvent.EventType == nameof(OrderStatusChangedEvent))
+            {
+                var statusChanged = JsonSerializer.Deserialize<OrderStatusChangedEvent>(orderEvent.Payload);
+                if (statusChanged is not null)
+                {
+                    projection = projection with { Status = statusChanged.Status };
+                }
+            }
+            else if (orderEvent.EventType == nameof(OrderDeletedEvent))
+            {
+                projection = projection with { Status = "Deleted" };
+            }
+        }
+
+        return projection with { AppliedEvents = appliedEvents };
+    }
+}

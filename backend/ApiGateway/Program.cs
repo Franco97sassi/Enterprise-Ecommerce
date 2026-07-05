@@ -68,6 +68,7 @@ app.MapGet("/", () => Results.Ok(new
     Routes = new[]
     {
         "/orders/{**catch-all}",
+        "/order-sagas/{**catch-all}",
         "/payments/{**catch-all}",
         "/stock/{**catch-all}",
         "/billing/{**catch-all}",
