@@ -1,4 +1,4 @@
-import React, { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -56,7 +56,13 @@ type Saga = {
 };
 
 type LoadState = 'idle' | 'loading' | 'success' | 'error';
+type FormSubmitEvent = {
+  preventDefault: () => void;
+};
 
+type InputChangeEvent = {
+  target: HTMLInputElement;
+};
 type OrderForm = {
   customer: string;
   product: string;
@@ -195,7 +201,7 @@ function App() {
     }));
   }
 
-  async function createOrder(event: FormEvent<HTMLFormElement>) {
+  async function createOrder(event: FormSubmitEvent) {
     event.preventDefault();
     setState('loading');
 
@@ -216,7 +222,7 @@ function App() {
     }
   }
 
-  async function createStock(event: FormEvent<HTMLFormElement>) {
+  async function createStock(event: FormSubmitEvent) {
     event.preventDefault();
     setState('loading');
 
@@ -257,22 +263,19 @@ function App() {
 
           <input
             value={stockForm.product}
-            onChange={(event) => updateStockField('product', event.target.value)}
-            placeholder="Producto"
+            onChange={(event: InputChangeEvent) => updateStockField('product', event.target.value)}            placeholder="Producto"
           />
 
           <input
             type="number"
             value={stockForm.availableQuantity}
-            onChange={(event) => updateStockField('availableQuantity', Number(event.target.value))}
-            placeholder="Disponible"
+            onChange={(event: InputChangeEvent) => updateStockField('availableQuantity', Number(event.target.value))}            placeholder="Disponible"
           />
 
           <input
             type="number"
             value={stockForm.reservedQuantity}
-            onChange={(event) => updateStockField('reservedQuantity', Number(event.target.value))}
-            placeholder="Reservado"
+            onChange={(event: InputChangeEvent) => updateStockField('reservedQuantity', Number(event.target.value))}            placeholder="Reservado"
           />
 
           <button disabled={isLoading}>
@@ -285,30 +288,26 @@ function App() {
 
           <input
             value={orderForm.customer}
-            onChange={(event) => updateOrderField('customer', event.target.value)}
-            placeholder="Cliente"
+            onChange={(event: InputChangeEvent) => updateOrderField('customer', event.target.value)}            placeholder="Cliente"
           />
 
           <input
             value={orderForm.product}
-            onChange={(event) => updateOrderField('product', event.target.value)}
-            placeholder="Producto"
+            onChange={(event: InputChangeEvent) => updateOrderField('product', event.target.value)}            placeholder="Producto"
           />
 
           <input
             type="number"
             min="1"
             value={orderForm.quantity}
-            onChange={(event) => updateOrderField('quantity', Number(event.target.value))}
-            placeholder="Cantidad"
+            onChange={(event: InputChangeEvent) => updateOrderField('quantity', Number(event.target.value))}            placeholder="Cantidad"
           />
 
           <input
             type="number"
             min="0"
             value={orderForm.total}
-            onChange={(event) => updateOrderField('total', Number(event.target.value))}
-            placeholder="Total"
+            onChange={(event: InputChangeEvent) => updateOrderField('total', Number(event.target.value))}            placeholder="Total"
           />
 
           <button disabled={isLoading}>
