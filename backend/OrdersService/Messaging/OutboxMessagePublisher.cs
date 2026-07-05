@@ -8,6 +8,9 @@ namespace OrdersService.Messaging;
 
 public sealed class OutboxMessagePublisher : BackgroundService
 {
+    private const int MaxRetryCount = 5;
+    private static readonly TimeSpan PollingInterval = TimeSpan.FromSeconds(5);
+
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly RabbitMqOptions _options;
     private readonly ILogger<OutboxMessagePublisher> _logger;
@@ -29,7 +32,7 @@ public sealed class OutboxMessagePublisher : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             await PublishPendingMessagesAsync(stoppingToken);
-            await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+            await Task.Delay(PollingInterval, stoppingToken);
         }
     }
 
@@ -37,9 +40,9 @@ public sealed class OutboxMessagePublisher : BackgroundService
     {
         using var scope = _scopeFactory.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<OrdersDbContext>();
+        var now = DateTime.UtcNow;
         var messages = await dbContext.OutboxMessages
-            .Where(message => message.ProcessedAt == null)
-            .OrderBy(message => message.OccurredAt)
+            .Where(message => message.ProcessedAt == null && message.DeadLetteredAt == null && message.NextAttemptAt <= now).OrderBy(message => message.OccurredAt)
             .Take(20)
             .ToListAsync(cancellationToken);
 
@@ -58,6 +61,7 @@ public sealed class OutboxMessagePublisher : BackgroundService
                     ContentType = "application/json",
                     DeliveryMode = DeliveryModes.Persistent,
                     MessageId = message.Id.ToString("N"),
+                    CorrelationId = message.CorrelationId,
                     Timestamp = new AmqpTimestamp(new DateTimeOffset(message.OccurredAt).ToUnixTimeSeconds()),
                     Type = message.Type
                 };
@@ -72,19 +76,35 @@ public sealed class OutboxMessagePublisher : BackgroundService
 
                 message.ProcessedAt = DateTime.UtcNow;
                 message.Error = null;
-                _logger.LogInformation("Published outbox message {MessageId} with routing key {RoutingKey}", message.Id, message.RoutingKey);
+                _logger.LogInformation(
+                     "Published outbox message {MessageId} with routing key {RoutingKey} and correlation {CorrelationId}",
+                     message.Id,
+                     message.RoutingKey,
+                     message.CorrelationId);
             }
             catch (Exception ex)
             {
                 message.RetryCount++;
                 message.Error = ex.Message;
-                _logger.LogError(ex, "Error publishing outbox message {MessageId}", message.Id);
+                if (message.RetryCount >= MaxRetryCount)
+                {
+                    message.DeadLetteredAt = DateTime.UtcNow;
+                    _logger.LogError(ex, "Dead-lettered outbox message {MessageId} after {RetryCount} retries", message.Id, message.RetryCount);
+                    continue;
+                }
+
+                message.NextAttemptAt = DateTime.UtcNow.Add(CalculateBackoff(message.RetryCount));
+                _logger.LogError(ex, "Error publishing outbox message {MessageId}. Retry {RetryCount} scheduled at {NextAttemptAt}", message.Id, message.RetryCount, message.NextAttemptAt);
             }
         }
 
         await dbContext.SaveChangesAsync(cancellationToken);
     }
-
+    private static TimeSpan CalculateBackoff(int retryCount)
+    {
+        var seconds = Math.Min(300, Math.Pow(2, retryCount) * 5);
+        return TimeSpan.FromSeconds(seconds);
+    }
     private async Task<IChannel> GetChannelAsync(CancellationToken cancellationToken)
     {
         if (_channel is { IsOpen: true })

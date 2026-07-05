@@ -12,6 +12,8 @@ namespace OrdersService.Messaging;
 public sealed class OrderSagaOrchestrator : BackgroundService
 {
     private const string QueueName = "orders.saga-orchestrator";
+    private const string DeadLetterExchangeName = "enterprise.dead-letter";
+    private const string DeadLetterQueueName = "orders.saga-orchestrator.dlq";
     private static readonly string[] RoutingKeys = ["stock.reserved", "stock.rejected", "payment.completed"];
 
     private readonly RabbitMqOptions _options;
@@ -42,7 +44,17 @@ public sealed class OrderSagaOrchestrator : BackgroundService
         _connection = await factory.CreateConnectionAsync(stoppingToken);
         _channel = await _connection.CreateChannelAsync(cancellationToken: stoppingToken);
         await _channel.ExchangeDeclareAsync(_options.ExchangeName, ExchangeType.Topic, durable: true, autoDelete: false, cancellationToken: stoppingToken);
-        await _channel.QueueDeclareAsync(QueueName, durable: true, exclusive: false, autoDelete: false, cancellationToken: stoppingToken);
+        await _channel.ExchangeDeclareAsync(DeadLetterExchangeName, ExchangeType.Topic, durable: true, autoDelete: false, cancellationToken: stoppingToken);
+        await _channel.QueueDeclareAsync(DeadLetterQueueName, durable: true, exclusive: false, autoDelete: false, cancellationToken: stoppingToken);
+        await _channel.QueueBindAsync(DeadLetterQueueName, DeadLetterExchangeName, QueueName, cancellationToken: stoppingToken);
+
+        var queueArguments = new Dictionary<string, object?>
+        {
+            ["x-dead-letter-exchange"] = DeadLetterExchangeName,
+            ["x-dead-letter-routing-key"] = QueueName
+        };
+
+        await _channel.QueueDeclareAsync(QueueName, durable: true, exclusive: false, autoDelete: false, arguments: queueArguments, cancellationToken: stoppingToken);
 
         foreach (var routingKey in RoutingKeys)
         {
@@ -90,6 +102,11 @@ public sealed class OrderSagaOrchestrator : BackgroundService
     private static async Task<OrderSagaState> GetOrCreateSagaAsync(OrdersDbContext dbContext, int orderId)
     {
         var saga = await dbContext.OrderSagaStates.FirstOrDefaultAsync(state => state.OrderId == orderId);
+        if (saga.CurrentStep is "StockReserved" or "PaymentCompleted")
+        {
+            return true;
+        }
+
         if (saga is not null)
         {
             return saga;
@@ -109,6 +126,11 @@ public sealed class OrderSagaOrchestrator : BackgroundService
         }
 
         var saga = await GetOrCreateSagaAsync(dbContext, integrationEvent.OrderId);
+        if (saga.Status is "Failed" or "Completed")
+        {
+            return true;
+        }
+
         saga.CurrentStep = "StockReserved";
         saga.Status = "ProcessingPayment";
         saga.UpdatedAt = DateTime.UtcNow;
@@ -126,6 +148,11 @@ public sealed class OrderSagaOrchestrator : BackgroundService
         }
 
         var saga = await GetOrCreateSagaAsync(dbContext, integrationEvent.OrderId);
+        if (saga.CurrentStep == "PaymentCompleted")
+        {
+            return true;
+        }
+
         saga.CurrentStep = "StockRejected";
         saga.Status = "Failed";
         saga.FailureReason = integrationEvent.Reason;

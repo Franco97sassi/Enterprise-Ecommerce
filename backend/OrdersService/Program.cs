@@ -69,9 +69,10 @@ orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext
             ? "Pending"
             : request.Status.Trim()
     };
-
+    await using var transaction = await dbContext.Database.BeginTransactionAsync(cancellationToken);
     dbContext.Orders.Add(order);
     await dbContext.SaveChangesAsync(cancellationToken);
+    var correlationId = Guid.NewGuid().ToString("N");
     dbContext.OrderSagaStates.Add(new OrderSagaState
     {
         OrderId = order.Id,
@@ -80,8 +81,7 @@ orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext
         StartedAt = DateTime.UtcNow,
         UpdatedAt = DateTime.UtcNow
     });
-    await dbContext.SaveChangesAsync(cancellationToken);
-    
+     
 
     var orderCreated = new OrderCreatedEvent(order.Id, order.Customer, order.Product, order.Quantity, order.Total, DateTime.UtcNow);
     dbContext.OutboxMessages.Add(new OutboxMessage
@@ -89,10 +89,11 @@ orders.MapPost("/", async (CreateOrderRequest request, OrdersDbContext dbContext
         RoutingKey = "order.created",
         Type = nameof(OrderCreatedEvent),
         Payload = JsonSerializer.Serialize(orderCreated),
-        OccurredAt = orderCreated.OccurredAt
+        OccurredAt = orderCreated.OccurredAt,
+        CorrelationId = correlationId,
     });
     await dbContext.SaveChangesAsync(cancellationToken);
-
+    await transaction.CommitAsync(cancellationToken);
     return Results.Created($"/orders/{order.Id}", order);
 });
 

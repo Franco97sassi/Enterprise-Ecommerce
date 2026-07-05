@@ -9,12 +9,15 @@ public class OutboxMessage
     public string Type { get; set; } = string.Empty;
 
     public string Payload { get; set; } = string.Empty;
-
+    public string CorrelationId { get; set; } = Guid.NewGuid().ToString("N");
     public DateTime OccurredAt { get; set; } = DateTime.UtcNow;
 
     public DateTime? ProcessedAt { get; set; }
 
     public int RetryCount { get; set; }
+    public DateTime NextAttemptAt { get; set; } = DateTime.UtcNow;
+
+    public DateTime? DeadLetteredAt { get; set; }
 
     public string? Error { get; set; }
 }

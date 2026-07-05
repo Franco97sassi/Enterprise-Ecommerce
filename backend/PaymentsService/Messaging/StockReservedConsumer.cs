@@ -12,6 +12,8 @@ namespace PaymentsService.Messaging;
 public sealed class StockReservedConsumer : BackgroundService
 {
     private const string QueueName = "payments.stock-reserved";
+    private const string DeadLetterExchangeName = "enterprise.dead-letter";
+    private const string DeadLetterQueueName = "payments.stock-reserved.dlq";
     private readonly RabbitMqOptions _options;
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<StockReservedConsumer> _logger;
@@ -31,7 +33,17 @@ public sealed class StockReservedConsumer : BackgroundService
         _connection = await factory.CreateConnectionAsync(stoppingToken);
         _channel = await _connection.CreateChannelAsync(cancellationToken: stoppingToken);
         await _channel.ExchangeDeclareAsync(_options.ExchangeName, ExchangeType.Topic, durable: true, autoDelete: false, cancellationToken: stoppingToken);
-        await _channel.QueueDeclareAsync(QueueName, durable: true, exclusive: false, autoDelete: false, cancellationToken: stoppingToken);
+        await _channel.ExchangeDeclareAsync(DeadLetterExchangeName, ExchangeType.Topic, durable: true, autoDelete: false, cancellationToken: stoppingToken);
+        await _channel.QueueDeclareAsync(DeadLetterQueueName, durable: true, exclusive: false, autoDelete: false, cancellationToken: stoppingToken);
+        await _channel.QueueBindAsync(DeadLetterQueueName, DeadLetterExchangeName, QueueName, cancellationToken: stoppingToken);
+
+        var queueArguments = new Dictionary<string, object?>
+        {
+            ["x-dead-letter-exchange"] = DeadLetterExchangeName,
+            ["x-dead-letter-routing-key"] = QueueName
+        };
+
+        await _channel.QueueDeclareAsync(QueueName, durable: true, exclusive: false, autoDelete: false, arguments: queueArguments, cancellationToken: stoppingToken);
         await _channel.QueueBindAsync(QueueName, _options.ExchangeName, "stock.reserved", cancellationToken: stoppingToken);
         await _channel.BasicQosAsync(prefetchSize: 0, prefetchCount: 1, global: false, cancellationToken: stoppingToken);
 
@@ -53,7 +65,12 @@ public sealed class StockReservedConsumer : BackgroundService
 
             using var scope = _scopeFactory.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<PaymentsDbContext>();
- 
+            if (await dbContext.OutboxMessages.AnyAsync(message => message.CorrelationId == correlationId))
+            {
+                await _channel!.BasicAckAsync(args.DeliveryTag, multiple: false);
+                return;
+            }
+
             var payment = await dbContext.Payments.FirstOrDefaultAsync(existingPayment => existingPayment.OrderId == integrationEvent.OrderId);
             if (payment is null)
             {
@@ -77,6 +94,7 @@ public sealed class StockReservedConsumer : BackgroundService
                 RoutingKey = "payment.completed",
                 Type = nameof(PaymentCompletedEvent),
                 Payload = JsonSerializer.Serialize(paymentCompleted),
+                CorrelationId = correlationId,
                 OccurredAt = paymentCompleted.OccurredAt
             });
             await dbContext.SaveChangesAsync();

@@ -17,4 +17,10 @@ public class OutboxMessage
     public int RetryCount { get; set; }
 
     public string? Error { get; set; }
+    public string CorrelationId { get; set; } = Guid.NewGuid().ToString("N");
+
+    public DateTime NextAttemptAt { get; set; } = DateTime.UtcNow;
+
+    public DateTime? DeadLetteredAt { get; set; }
+
 }

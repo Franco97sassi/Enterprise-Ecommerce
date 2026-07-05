@@ -11,6 +11,10 @@ namespace StockService.Messaging;
 
 public sealed class OrderCreatedConsumer : BackgroundService
 {
+    private const string QueueName = "stock.order-created";
+    private const string DeadLetterExchangeName = "enterprise.dead-letter";
+    private const string DeadLetterQueueName = "stock.order-created.dlq";
+
     private readonly RabbitMqOptions _options;
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ILogger<OrderCreatedConsumer> _logger;
@@ -47,15 +51,42 @@ public sealed class OrderCreatedConsumer : BackgroundService
             autoDelete: false,
             cancellationToken: stoppingToken);
 
+        await _channel.ExchangeDeclareAsync(
+            DeadLetterExchangeName,
+            ExchangeType.Topic,
+            durable: true,
+            autoDelete: false,
+            cancellationToken: stoppingToken);
+
         await _channel.QueueDeclareAsync(
-            "stock.order-created",
+            DeadLetterQueueName,
             durable: true,
             exclusive: false,
             autoDelete: false,
             cancellationToken: stoppingToken);
 
         await _channel.QueueBindAsync(
-            "stock.order-created",
+            DeadLetterQueueName,
+            DeadLetterExchangeName,
+            QueueName,
+            cancellationToken: stoppingToken);
+
+        var queueArguments = new Dictionary<string, object?>
+        {
+            ["x-dead-letter-exchange"] = DeadLetterExchangeName,
+            ["x-dead-letter-routing-key"] = QueueName
+        };
+
+        await _channel.QueueDeclareAsync(
+            QueueName,
+            durable: true,
+            exclusive: false,
+            autoDelete: false,
+            arguments: queueArguments,
+            cancellationToken: stoppingToken);
+
+        await _channel.QueueBindAsync(
+            QueueName,
             _options.ExchangeName,
             "order.created",
             cancellationToken: stoppingToken);
@@ -70,7 +101,7 @@ public sealed class OrderCreatedConsumer : BackgroundService
         consumer.ReceivedAsync += HandleMessageAsync;
 
         await _channel.BasicConsumeAsync(
-            "stock.order-created",
+            QueueName,
             autoAck: false,
             consumer: consumer,
             cancellationToken: stoppingToken);
@@ -82,6 +113,7 @@ public sealed class OrderCreatedConsumer : BackgroundService
         {
             var json = Encoding.UTF8.GetString(args.Body.Span);
             var order = JsonSerializer.Deserialize<OrderCreatedEvent>(json);
+            var correlationId = args.BasicProperties?.CorrelationId ?? Guid.NewGuid().ToString("N");
 
             if (order is null)
             {
@@ -92,6 +124,12 @@ public sealed class OrderCreatedConsumer : BackgroundService
             using var scope = _scopeFactory.CreateScope();
 
             var db = scope.ServiceProvider.GetRequiredService<StockDbContext>();
+
+            if (await db.OutboxMessages.AnyAsync(message => message.CorrelationId == correlationId))
+            {
+                await _channel!.BasicAckAsync(args.DeliveryTag, false);
+                return;
+            }
 
             var stock = await db.ProductStocks
                 .FirstOrDefaultAsync(x => x.Product == order.Product);
@@ -110,6 +148,7 @@ public sealed class OrderCreatedConsumer : BackgroundService
                     RoutingKey = "stock.rejected",
                     Type = nameof(StockRejectedEvent),
                     Payload = JsonSerializer.Serialize(stockRejected),
+                    CorrelationId = correlationId,
                     OccurredAt = stockRejected.OccurredAt
                 });
 
@@ -131,6 +170,7 @@ public sealed class OrderCreatedConsumer : BackgroundService
                     RoutingKey = "stock.reserved",
                     Type = nameof(StockReservedEvent),
                     Payload = JsonSerializer.Serialize(stockReserved),
+                    CorrelationId = correlationId,
                     OccurredAt = stockReserved.OccurredAt
                 });
 
@@ -153,10 +193,14 @@ public sealed class OrderCreatedConsumer : BackgroundService
     public override async Task StopAsync(CancellationToken cancellationToken)
     {
         if (_channel is not null)
+        {
             await _channel.DisposeAsync();
+        }
 
         if (_connection is not null)
+        {
             await _connection.DisposeAsync();
+        }
 
         await base.StopAsync(cancellationToken);
     }
