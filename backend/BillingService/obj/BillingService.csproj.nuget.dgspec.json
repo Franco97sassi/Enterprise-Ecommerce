@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\BillingService.csproj": {}
+    "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\BillingService\\BillingService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\BillingService.csproj": {
+    "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\BillingService\\BillingService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\BillingService.csproj",
+        "projectUniqueName": "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\BillingService\\BillingService.csproj",
         "projectName": "BillingService",
-        "projectPath": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\BillingService.csproj",
+        "projectPath": "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\BillingService\\BillingService.csproj",
         "packagesPath": "C:\\Users\\Franc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\BillingService\\obj\\",
+        "outputPath": "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\BillingService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

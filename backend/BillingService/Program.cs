@@ -12,8 +12,8 @@ builder.Services.AddDbContext<BillingDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
 builder.Services.AddHostedService<PaymentCompletedConsumer>();
-builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
-builder.Services.AddHostedService<PaymentCompletedConsumer>();
+//builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
+//builder.Services.AddHostedService<PaymentCompletedConsumer>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

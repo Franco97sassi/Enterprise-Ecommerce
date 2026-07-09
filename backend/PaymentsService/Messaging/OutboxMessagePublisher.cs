@@ -143,3 +143,4 @@ public sealed class OutboxMessagePublisher : BackgroundService
 
         await base.StopAsync(cancellationToken);
     }
+}

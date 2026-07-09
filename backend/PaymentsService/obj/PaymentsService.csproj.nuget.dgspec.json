@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\PaymentsService.csproj": {}
+    "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\PaymentsService\\PaymentsService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\PaymentsService.csproj": {
+    "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\PaymentsService\\PaymentsService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\PaymentsService.csproj",
+        "projectUniqueName": "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\PaymentsService\\PaymentsService.csproj",
         "projectName": "PaymentsService",
-        "projectPath": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\PaymentsService.csproj",
+        "projectPath": "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\PaymentsService\\PaymentsService.csproj",
         "packagesPath": "C:\\Users\\Franc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\PaymentsService\\obj\\",
+        "outputPath": "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\PaymentsService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

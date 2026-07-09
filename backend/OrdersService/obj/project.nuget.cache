@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Pp1Z5/VFG5s=",
+  "dgSpecHash": "F6G+C2ZTiHM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\OrdersService.csproj",
+  "projectFilePath": "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\OrdersService\\OrdersService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Franc\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\Franc\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
@@ -58,10 +58,10 @@
     {
       "code": "NU1903",
       "level": "Warning",
-      "message": "Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
-      "projectPath": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\OrdersService.csproj",
+      "message": "El paquete \"Microsoft.OpenApi\" 2.0.0 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
+      "projectPath": "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\OrdersService\\OrdersService.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\OrdersService\\OrdersService.csproj",
+      "filePath": "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\OrdersService\\OrdersService.csproj",
       "libraryId": "Microsoft.OpenApi",
       "targetGraphs": [
         "net10.0"

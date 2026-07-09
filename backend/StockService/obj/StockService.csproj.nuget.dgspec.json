@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\StockService.csproj": {}
+    "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\StockService\\StockService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\StockService.csproj": {
+    "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\StockService\\StockService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\StockService.csproj",
+        "projectUniqueName": "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\StockService\\StockService.csproj",
         "projectName": "StockService",
-        "projectPath": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\StockService.csproj",
+        "projectPath": "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\StockService\\StockService.csproj",
         "packagesPath": "C:\\Users\\Franc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Franc\\Desktop\\ArquitecturaDeSoftware\\EnterpriseCommerce\\backend\\StockService\\obj\\",
+        "outputPath": "C:\\Users\\Franc\\Desktop\\EcommerceFullStack\\Enterprise-Ecommerce\\backend\\StockService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -53,6 +53,12 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[10.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
