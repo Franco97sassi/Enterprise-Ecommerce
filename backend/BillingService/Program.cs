@@ -9,12 +9,18 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<BillingDbContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()));
 builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
 builder.Services.AddHostedService<PaymentCompletedConsumer>();
 //builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
 //builder.Services.AddHostedService<PaymentCompletedConsumer>();
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<BillingDbContext>();
+    await dbContext.Database.EnsureCreatedAsync();
+}
 
 if (app.Environment.IsDevelopment())
 {

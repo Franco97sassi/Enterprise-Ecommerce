@@ -8,12 +8,17 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<NotificationsDbContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+       builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()));
 builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
 builder.Services.AddHostedService<NotificationEventsConsumer>();
 
 var app = builder.Build();
-
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<NotificationsDbContext>();
+    await dbContext.Database.EnsureCreatedAsync();
+}
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

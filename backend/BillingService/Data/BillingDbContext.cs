@@ -11,4 +11,16 @@ public class BillingDbContext : DbContext
     }
 
     public DbSet<BillingRecord> BillingRecords => Set<BillingRecord>();
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<BillingRecord>(billingRecord =>
+        {
+            billingRecord.Property(record => record.Amount)
+                .HasPrecision(18, 2);
+
+            billingRecord.Property(record => record.Status)
+                .HasMaxLength(50);
+        });
+    }
+
 }
