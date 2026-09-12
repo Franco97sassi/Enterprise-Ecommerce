@@ -242,24 +242,86 @@ function App() {
 
   return (
     <main className="shell">
-      <section className="hero">
-        <div>
-          <p className="eyebrow">Paso 12 completo</p>
-          <h1>Frontend React para probar Enterprise Ecommerce</h1>
-          <p>
-            Crea stock, dispara órdenes y observa pagos, facturación,
-            notificaciones y Saga Orchestrator desde el API Gateway.
+      <nav className="topbar" aria-label="Navegación principal">
+        <a className="brand" href="#top" aria-label="Nexus Commerce, inicio">
+          <span className="brand-mark">N</span>
+          <span>NEXUS <b>COMMERCE</b></span>
+        </a>
+        <div className="nav-links">
+          <a className="active" href="#overview">Overview</a>
+          <a href="#operations">Operaciones</a>
+          <a href="#activity">Actividad</a>
+        </div>
+        <div className="nav-actions">
+          <span className={`connection-dot ${state}`} aria-hidden="true" />
+          <span className="gateway-label">Gateway: {gatewayStatus}</span>
+          <span className="avatar">AD</span>
+        </div>
+      </nav>
+
+      <section className="hero" id="top">
+        <div className="hero-copy">
+          <p className="eyebrow"><span /> Commerce command center</p>
+          <h1>Tu ecosistema de<br /><em>commerce, conectado.</em></h1>
+          <p className="hero-description">
+            Controla operaciones, inventario y el recorrido completo de cada orden
+            desde un único centro de mando.
           </p>
+          <div className="hero-actions">
+            <a className="primary-action" href="#operations">Nueva operación <span>→</span></a>
+            <button className="text-action" onClick={refresh} disabled={isLoading}>
+              {isLoading ? 'Sincronizando...' : 'Sincronizar datos'}
+            </button>
+          </div>
         </div>
 
-        <div className={`status ${state}`}>
-          Gateway: {gatewayStatus}
+        <div className="stack-card" aria-label="Distribución del ecosistema tecnológico">
+          <div className="stack-heading">
+            <div>
+              <span>Arquitectura actual</span>
+              <strong>Tech ecosystem</strong>
+            </div>
+            <span className="live-badge">● LIVE</span>
+          </div>
+          <div className="stack-total">
+            <strong>5</strong>
+            <span>plataformas<br />integradas</span>
+          </div>
+          <div className="stacked-bar" aria-hidden="true">
+            <span className="shopify" /><span className="sap" /><span className="adobe" />
+            <span className="amazon" /><span className="observability" />
+          </div>
+          <div className="stack-list">
+            <StackItem className="shopify" name="Shopify Plus" value="35%" />
+            <StackItem className="sap" name="SAP Commerce Cloud" value="25%" />
+            <StackItem className="adobe" name="Adobe Commerce (Magento)" value="20%" />
+            <StackItem className="amazon" name="Amazon Seller Central" value="10%" />
+            <StackItem className="observability" name="Grafana / Langfuse" value="10%" />
+          </div>
         </div>
       </section>
 
-      <section className="actions">
+      <section className="overview" id="overview">
+        <div className="section-heading">
+          <div><span className="section-kicker">Visión general</span><h2>Operación en tiempo real</h2></div>
+          <span className={`status ${state}`}><i /> {state === 'error' ? 'Conexión interrumpida' : 'Sistemas operativos'}</span>
+        </div>
+        <div className="metrics">
+          <Metric title="Órdenes" value={data.orders.length} accent="violet" icon="↗" />
+          <Metric title="Inventario" value={data.stock.length} accent="cyan" icon="◇" />
+          <Metric title="Pagos" value={data.payments.length} accent="green" icon="$" />
+          <Metric title="Facturas" value={data.billing.length} accent="orange" icon="▤" />
+          <Metric title="Notificaciones" value={data.notifications.length} accent="pink" icon="◉" />
+        </div>
+      </section>
+
+      <section className="operations" id="operations">
+        <div className="section-heading compact">
+          <div><span className="section-kicker">Acciones rápidas</span><h2>Gestiona tu operación</h2></div>
+        </div>
+        <div className="actions">
         <form onSubmit={createStock} className="card">
-          <h2>Preparar stock</h2>
+          <div className="card-title"><span className="card-icon cyan">◇</span><div><h3>Preparar stock</h3><p>Actualiza las existencias de un producto.</p></div></div>
 
           <input
             value={stockForm.product}
@@ -278,13 +340,13 @@ function App() {
             onChange={(event: InputChangeEvent) => updateStockField('reservedQuantity', Number(event.target.value))}            placeholder="Reservado"
           />
 
-          <button disabled={isLoading}>
-            Guardar stock
+          <button className="submit-button" disabled={isLoading}>
+            Guardar stock <span>→</span>
           </button>
         </form>
 
         <form onSubmit={createOrder} className="card highlight">
-          <h2>Crear orden end-to-end</h2>
+          <div className="card-title"><span className="card-icon violet">↗</span><div><h3>Crear orden end-to-end</h3><p>Inicia un nuevo flujo en todo el ecosistema.</p></div></div>
 
           <input
             value={orderForm.customer}
@@ -310,10 +372,11 @@ function App() {
             onChange={(event: InputChangeEvent) => updateOrderField('total', Number(event.target.value))}            placeholder="Total"
           />
 
-          <button disabled={isLoading}>
-            Crear orden
+          <button className="submit-button" disabled={isLoading}>
+            Crear orden <span>→</span>
           </button>
         </form>
+        </div>
       </section>
 
       {message && (
@@ -322,15 +385,11 @@ function App() {
         </p>
       )}
 
-      <section className="metrics">
-        <Metric title="Órdenes" value={data.orders.length} />
-        <Metric title="Stock" value={data.stock.length} />
-        <Metric title="Pagos" value={data.payments.length} />
-        <Metric title="Facturas" value={data.billing.length} />
-        <Metric title="Notificaciones" value={data.notifications.length} />
-      </section>
-
-      <section className="grid">
+      <section className="activity" id="activity">
+        <div className="section-heading compact">
+          <div><span className="section-kicker">Datos conectados</span><h2>Actividad del ecosistema</h2></div>
+        </div>
+        <div className="grid">
         <Table
           title="Órdenes"
           rows={data.orders}
@@ -366,6 +425,7 @@ function App() {
           rows={data.notifications}
           columns={['id', 'orderId', 'recipient', 'status']}
         />
+        </div>
       </section>
 
       <button className="floating" onClick={refresh} disabled={isLoading}>
@@ -375,11 +435,17 @@ function App() {
   );
 }
 
-function Metric({ title, value }: { title: string; value: number }) {
+function StackItem({ className, name, value }: { className: string; name: string; value: string }) {
+  return <div className="stack-item"><span className={`legend-dot ${className}`} /><span>{name}</span><strong>{value}</strong></div>;
+}
+
+function Metric({ title, value, accent, icon }: { title: string; value: number; accent: string; icon: string }) {
   return (
     <article className="metric">
+      <div className={`metric-icon ${accent}`}>{icon}</div>
       <span>{title}</span>
-      <strong>{value}</strong>
+      <strong>{String(value).padStart(2, '0')}</strong>
+      <small>Datos sincronizados</small>
     </article>
   );
 }
@@ -395,7 +461,7 @@ function Table<T extends Record<string, unknown>>({
 }) {
   return (
     <article className="card table-card">
-      <h2>{title}</h2>
+      <div className="table-title"><h3>{title}</h3><span>{rows.length} registros</span></div>
 
       <div className="table-wrap">
         <table>
